@@ -56,9 +56,68 @@
                 }
             },
             checkFirstLine: function() {
-                var firstLine = $('.box').eq(0).html( )=== $('.box').eq(1).html 
-                    && $('.box').eq(1).html() ===$ ('.box').eq(2).htm()
-                return firstLine
+                var box1 = $('.box').eq(0).html();
+                var box2 = $('.box').eq(1).html();
+                var box3 = $('.box').eq(2).html();
+                var lineWin = box1 === box2 && box2 === box3 && box1 !== '';
+                return lineWin;
+            },
+            checkSecondLine: function() {
+                var box1 = $('.box').eq(3).html();
+                var box2 = $('.box').eq(4).html();
+                var box3 = $('.box').eq(5).html();
+                var lineWin = box1 === box2 && box2 === box3 && box1 !== '';
+                return lineWin;
+            },    
+            checkThirdLine: function() {
+                var box1 = $('.box').eq(6).html();
+                var box2 = $('.box').eq(7).html();
+                var box3 = $('.box').eq(8).html();
+                var lineWin = box1 === box2 && box2 === box3 && box1 !== '';
+                return lineWin;
+            },  
+            checkFirstRow: function() {
+                var box1 = $('.box').eq(0).html();
+                var box2 = $('.box').eq(3).html();
+                var box3 = $('.box').eq(6).html();
+                var rowWin = box1 === box2 && box2 === box3 && box1 !== '';
+                return rowWin;
+            },
+            checkSecondRow: function() {
+                var box1 = $('.box').eq(1).html();
+                var box2 = $('.box').eq(4).html();
+                var box3 = $('.box').eq(7).html();
+                var rowWin = box1 === box2 && box2 === box3 && box1 !== '';
+                return rowWin;
+            },
+            checkThirdRow: function() {
+                var box1 = $('.box').eq(2).html();
+                var box2 = $('.box').eq(5).html();
+                var box3 = $('.box').eq(8).html();
+                var rowWin = box1 === box2 && box2 === box3 && box1 !== '';
+                return rowWin;
+            },
+            checkFirstDiag: function() {
+                var box1 = $('.box').eq(0).html();
+                var box2 = $('.box').eq(4).html();
+                var box3 = $('.box').eq(8).html();
+                var diagWin = box1 === box2 && box2 === box3 && box1 !== '';
+                return diagWin;
+            },
+            checkSecondDiag: function() {
+                var box1 = $('.box').eq(2).html();
+                var box2 = $('.box').eq(4).html();
+                var box3 = $('.box').eq(6).html();
+                var diagWin = box1 === box2 && box2 === box3 && box1 !== '';
+                return diagWin;
+            },
+            checkForWin: function() {
+                var winner = game.checkFirstLine() || game.checkSecondLine() || game.checkThirdLine() ||
+                game.checkFirstRow() || game.checkSecondRow() || game.checkThirdRow() || game.checkFirstDiag() ||
+                game.checkSecondDiag();
+                if (winner) {
+                    alert('win');
+                }
             }
         };
 
@@ -70,6 +129,7 @@
             if ($(this).html() === '') {
                 var image = '<img src="' + game.currentPlayer.pic + '" />'
                 $(this).html(image)
+                game.checkForWin();
                 game.switchPlayer();
             } else {
                 alert('box taken please choose another');

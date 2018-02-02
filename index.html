@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-3.3.1.js"></script>
+    <title>TicTacToe</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            display: inline-block;
+            vertical-align: top;
+            border-radius: 20%;
+            text-align: center;
+        }
+        #grid {
+            width: 330px;
+        }
+        img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TicTacToe</h1>
+    <div id="grid">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+    <script>
+        var game = {
+            players: [{name: 'x', pic: 'porky.gif'}, {name: 'o', pic: 'taz.png'}],
+            currentPlayer: null,
+            done: false,
+            winner: false,
+            init: function() {
+                console.log('Game Initialized');
+                game.currentPlayer = game.players[0];
+            },
+            switchPlayer: function() {
+                if (game.currentPlayer === game.players[0]) {
+                    game.currentPlayer = game.players[1];
+                } else {
+                    game.currentPlayer = game.players[0];
+                }
+            },
+            checkFirstLine: function() {
+                var firstLine = $('.box').eq(0).html( )=== $('.box').eq(1).html 
+                    && $('.box').eq(1).html() ===$ ('.box').eq(2).htm()
+                return firstLine
+            }
+        };
+
+        game.init();
+
+        var boxes = $('.box');
+
+        function clickHandler(evt) {
+            if ($(this).html() === '') {
+                var image = '<img src="' + game.currentPlayer.pic + '" />'
+                $(this).html(image)
+                game.switchPlayer();
+            } else {
+                alert('box taken please choose another');
+            }
+        }
+        boxes.on('click', clickHandler);
+
+
+    </script>
+    
+</body>
+</html>
